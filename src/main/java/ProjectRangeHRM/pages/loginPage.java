@@ -59,8 +59,8 @@ public class loginPage {
         String userName =  userNameAndPassword.get(0).getText().split(" : ")[1];
         String password =  userNameAndPassword.get(1).getText().split(" : ")[1];
         login(userName , password);
-        drop.click();
-        logOut.get(3).click();
+//        drop.click();
+//        logOut.get(3).click();
         System.out.println("Log in successfully as administrator");
     }
 
