@@ -1,5 +1,6 @@
 package ProjectRangeHRM.pages;
 
+import org.bouncycastle.jcajce.provider.symmetric.AES;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -34,31 +35,26 @@ public class adminPage {
     WebElement nameWorker;
 
 
-
-
-
-
-
-
-
     private ChromeDriver driver;
-    public adminPage(ChromeDriver driver){
+
+    public adminPage(ChromeDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver , this);
+        PageFactory.initElements(driver, this);
     }
+
     public void searchNameUser() throws InterruptedException {
         listOfNamePage.get(0).click();
         String nameUser = listOfName.get(0).getText().split("\n")[0];
         enterUserName.sendKeys(nameUser);
         clickSearch.click();
 
-        if (findSearch.getText().contains("Record Found")){
+        if (findSearch.getText().contains("Record Found")) {
             System.out.println("find user");
-        }
-        else {
+        } else {
             System.out.println("not find user");
         }
     }
+
     public void deleteUser() throws InterruptedException {
         listOfNamePage.get(0).click();
         String nameUser = listOfName.get(2).getText().split("\n")[0];
@@ -78,26 +74,8 @@ public class adminPage {
             System.out.println("User deletion failed.");
         }
     }
+
     public void updateName() throws InterruptedException {
         listOfNamePage.get(0).click();
-        listOfNameSecond.get(1).click();
-//        nameWorker.click();
-        Actions actions = new Actions(driver);
-        actions.doubleClick(nameWorker).perform();
-        nameWorker.sendKeys(Keys.CONTROL + "a");
-
-
-        actions.sendKeys(Keys.DELETE).perform();
-
-        sleep(5000);
-
-
-
-
-
-
-
     }
-
-
 }

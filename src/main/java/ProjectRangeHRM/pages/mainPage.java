@@ -1,5 +1,7 @@
 package ProjectRangeHRM.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +23,10 @@ public class mainPage {
     WebElement enterNamePage;
     @FindBy(className = "oxd-main-menu")
     List<WebElement> findPage;
+    @FindBy(xpath = "//i[contains(@class, 'userdropdown')]")
+    WebElement profileMenu;
+    @FindBy(xpath = "//a[text()='Logout']")
+    WebElement logoutButton;
 
 
 
@@ -58,7 +64,31 @@ public class mainPage {
             System.out.println("not found nothing");
 
         }
+    }
+    public void logout() throws InterruptedException {
+        profileMenu.click();
+        logoutButton.click();
+        String currentUrl = driver.getCurrentUrl();
+        if (currentUrl.contains("/auth/login")){
+            System.out.println("Logged out successfully");
+        }
+        else {
+            System.out.println("Did not log out successfully");
+        }
+    }
+    public void Responsive() throws InterruptedException {
+        PageLoadTimePage PageLoadTimePage = new PageLoadTimePage(driver);
+        long startTimeDesktop = System.currentTimeMillis();
+        driver.manage().window().setSize(new Dimension(1920, 1080));
+        PageLoadTimePage.getPerformance(startTimeDesktop);
 
+        long startTimeTablet = System.currentTimeMillis();
+        driver.manage().window().setSize(new Dimension(768, 1024));
+        PageLoadTimePage.getPerformance(startTimeTablet);
+
+        long startTimeMobile = System.currentTimeMillis();
+        driver.manage().window().setSize(new Dimension(375, 667));
+        PageLoadTimePage.getPerformance(startTimeMobile);
 
 
     }

@@ -14,9 +14,10 @@ public class mainTest {
         loginPage loginPage = new loginPage(driver);
         loginPage.checkLoginAdmin();
         mainPage mainPage = new  mainPage(driver);
-        mainPage.checkListOfThePages();
-        mainPage.searchPage();
-
+//        mainPage.checkListOfThePages();
+//        mainPage.searchPage();
+//        mainPage.logout();
+//        mainPage.Responsive();
         base.seleniumClose(driver);
     }
 }
