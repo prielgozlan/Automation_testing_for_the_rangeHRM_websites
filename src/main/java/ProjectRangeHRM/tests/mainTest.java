@@ -18,6 +18,7 @@ public class mainTest {
 //        mainPage.searchPage();
 //        mainPage.logout();
 //        mainPage.Responsive();
+//        mainPage.linkValidation();
         base.seleniumClose(driver);
     }
 }

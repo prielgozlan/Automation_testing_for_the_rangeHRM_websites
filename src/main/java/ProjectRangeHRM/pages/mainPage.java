@@ -7,6 +7,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -89,13 +92,26 @@ public class mainPage {
         long startTimeMobile = System.currentTimeMillis();
         driver.manage().window().setSize(new Dimension(375, 667));
         PageLoadTimePage.getPerformance(startTimeMobile);
-
-
     }
-
-
-
-
-
-
+    public void linkValidation(){
+        List<WebElement> links = driver.findElements(By.tagName("a"));
+        for (WebElement link : links) {
+            String url = link.getAttribute("href");
+            int statusCode = checkLinkStatus(url);
+            if (statusCode != 200){
+                System.out.println("Error number : "+ statusCode +" "+url);
+            }
+        }
+    }
+     public static int checkLinkStatus(String url) {
+            try {
+                URL link = new URL(url);
+                HttpURLConnection connection = (HttpURLConnection) link.openConnection();
+                connection.setRequestMethod("HEAD");
+                connection.connect();
+                return connection.getResponseCode();
+            } catch (IOException e) {
+                return 404;
+            }
+        }
 }
