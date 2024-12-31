@@ -14,11 +14,11 @@ public class mainTest {
         loginPage loginPage = new loginPage(driver);
         loginPage.checkLoginAdmin();
         mainPage mainPage = new  mainPage(driver);
-//        mainPage.checkListOfThePages();
-//        mainPage.searchPage();
-//        mainPage.logout();
+        mainPage.logout();
 //        mainPage.Responsive();
 //        mainPage.linkValidation();
+//        mainPage.checkListOfThePages();
+//        mainPage.searchPage();
         base.seleniumClose(driver);
     }
 }

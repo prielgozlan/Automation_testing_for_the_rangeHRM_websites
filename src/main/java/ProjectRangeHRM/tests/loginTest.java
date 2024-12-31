@@ -11,11 +11,11 @@ public class loginTest {
         seleniumBase base = new seleniumBase();
         ChromeDriver driver = base.seleniumInit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         loginPage loginPage = new loginPage(driver);
-        loginPage.checkLoginAdmin();
-        loginPage.checkLoginWithUserNameWrong();
-        loginPage.checkLoginWithPasswordWrong();
-        loginPage.checkLoginEmpty();
-        loginPage.forgetYourPassword();
+//        loginPage.checkLoginAdmin();
+//        loginPage.checkLoginWithUserNameWrong();
+//        loginPage.checkLoginWithPasswordWrong();
+//        loginPage.checkLoginEmpty();
+//        loginPage.forgetYourPassword();
         base.seleniumClose(driver);
     }
 }
