@@ -1,16 +1,20 @@
 package ProjectRangeHRM.pages;
 
+
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class PageLoadTimePage {
+import static org.testng.Assert.assertTrue;
+
+
+public class PageLoadTime1Page {
 
     private ChromeDriver driver;
-    public PageLoadTimePage(ChromeDriver driver) {
+    public PageLoadTime1Page(ChromeDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    public void getPerformance (long startTime){
+    public long getPerformance (long startTime){
         long loadTime = System.currentTimeMillis() - startTime;
         loadTime /= 1000;
         if (loadTime > 3){
@@ -19,6 +23,6 @@ public class PageLoadTimePage {
         else {
             System.out.println("The site does load in a timely manner.");
         }
-
+        return loadTime;
     }
 }
