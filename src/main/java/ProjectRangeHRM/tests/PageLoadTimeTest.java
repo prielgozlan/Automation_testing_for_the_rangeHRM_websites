@@ -21,7 +21,7 @@ public class PageLoadTimeTest {
     @Before
     public void setUp() throws InterruptedException {
         String timesNow = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
-        String myPath = System.getProperty("user.dir") + "/src/main/resources/extentReport_" + timesNow + ".html";
+        String myPath = System.getProperty("user.dir") + "/src/main/resources/PageLoadTimeTest_" + timesNow + ".html";
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter(myPath);
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
@@ -35,7 +35,6 @@ public class PageLoadTimeTest {
         driver = base.seleniumInit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         PageLoadTimePage pageLoadTimePage = new PageLoadTimePage(driver);
         long loadTime = pageLoadTimePage.getPerformance(startTime);
-        System.out.println(loadTime);
         if (loadTime > 3000) {
             test.pass("Page load time is within acceptable range: " + loadTime + "ms");
         } else {

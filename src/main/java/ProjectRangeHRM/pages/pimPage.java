@@ -1,6 +1,5 @@
 package ProjectRangeHRM.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
@@ -40,21 +39,24 @@ WebElement findEmployee;
         this.driver = driver;
         PageFactory.initElements(driver , this);
     }
-    public void searchEmployee(String nameEmployee) throws InterruptedException {
+    public String searchEmployee(String nameEmployee) throws InterruptedException {
         listOfNamePage.get(1).click();
         nameEmp.sendKeys(nameEmployee);
         enterSearch.click();
         sleep(5000);
         if(Objects.equals(findEmployee.getText(), "No Records Found")){
             System.out.println("No Records Found");
+            return "No Records Found";
         }
         else {
             System.out.println("Records Found");
+            return "Records Found";
         }
-        sleep(3000);
+
+
 
     }
-    public void addUser() throws InterruptedException {
+    public String addUser() throws InterruptedException {
         listOfNamePage.get(1).click();
         enterAdd.click();
         String firstNameOfWorker = "priel";
@@ -64,8 +66,9 @@ WebElement findEmployee;
         enterSave.click();
         sleep(5000);
         listOfNamePage.get(1).click();
-        searchEmployee(lastNameOfWorker);
+        String searchEmployee = searchEmployee(lastNameOfWorker);
         sleep(5000);
+        return searchEmployee;
     }
 
 
