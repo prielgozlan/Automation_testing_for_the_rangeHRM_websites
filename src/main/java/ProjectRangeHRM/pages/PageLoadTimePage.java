@@ -8,7 +8,7 @@ public class PageLoadTimePage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    public void getPerformance (long startTime){
+    public long getPerformance (long startTime){
         long loadTime = System.currentTimeMillis() - startTime;
         loadTime /= 1000;
         if (loadTime > 3){
@@ -18,5 +18,6 @@ public class PageLoadTimePage {
             System.out.println("The site does load in a timely manner.");
         }
 
+        return loadTime;
     }
 }
