@@ -1,10 +1,7 @@
 package ProjectRangeHRM.pages;
 
-import org.bouncycastle.jcajce.provider.symmetric.AES;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -42,7 +39,7 @@ public class adminPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void searchNameUser() throws InterruptedException {
+    public String searchNameUser() throws InterruptedException {
         listOfNamePage.get(0).click();
         String nameUser = listOfName.get(0).getText().split("\n")[0];
         enterUserName.sendKeys(nameUser);
@@ -50,12 +47,14 @@ public class adminPage {
 
         if (findSearch.getText().contains("Record Found")) {
             System.out.println("find user");
+            return "find user";
         } else {
             System.out.println("not find user");
+            return "not find user";
         }
     }
 
-    public void deleteUser() throws InterruptedException {
+    public String deleteUser() throws InterruptedException {
         listOfNamePage.get(0).click();
         String nameUser = listOfName.get(2).getText().split("\n")[0];
         listOfNameUser.get(2).click();
@@ -70,8 +69,10 @@ public class adminPage {
         }
         if (isUserDeleted) {
             System.out.println("User deleted successfully.");
+            return "User deleted successfully.";
         } else {
             System.out.println("User deletion failed.");
+            return "User deletion failed.";
         }
     }
 
