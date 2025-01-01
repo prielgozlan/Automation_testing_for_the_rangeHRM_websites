@@ -40,6 +40,7 @@ public class mainTest {
     @Test
     public void logout() throws InterruptedException {
         String logout = mainPage.logout();
+        test = extent.createTest("Logout Test", "Testing logout functionality");
         if(Objects.equals(logout, "Logged out successfully")){
             test.pass("Logged out successfully");
         } else if (Objects.equals(logout, "Did not log out successfully")) {
@@ -50,6 +51,7 @@ public class mainTest {
     @Test
     public void linkValidation(){
         String linkValidation = mainPage.linkValidation();
+        test = extent.createTest("Link Validation Test", "Testing if all links are valid on the main page");
         if (Objects.equals(linkValidation, "all links pass ok")){
             test.pass("all links pass ok");
         }else {
@@ -60,6 +62,7 @@ public class mainTest {
     @Test
     public void searchPage() throws InterruptedException {
         String searchPage = mainPage.searchPage();
+        test = extent.createTest("Page Search Test", "Testing search functionality on the main page");
         if(Objects.equals(searchPage, "not found nothing")){
             test.fail("not found nothing pages");
         }else {
@@ -70,6 +73,7 @@ public class mainTest {
     @Test
     public void checkListOfThePages() throws InterruptedException {
         String checkListOfThePages = mainPage.checkListOfThePages();
+        extent.createTest("Page List Check Test", "Testing list of page titles and content matching");
         if(Objects.equals(checkListOfThePages, "The page does match the title in the page.")){
             test.pass(checkListOfThePages);
         }else {
@@ -80,6 +84,7 @@ public class mainTest {
     @Test
     public void Responsive() throws InterruptedException {
         String Responsive = mainPage.Responsive();
+        test = extent.createTest("Responsive Test", "Testing responsiveness of the main page");
         if(Objects.equals(Responsive, "everything pass ok")){
             test.pass(Responsive);
         }else {
@@ -93,52 +98,4 @@ public class mainTest {
         extent.flush();
     }
 }
-
-
-
-
-
-
-
-
-//גירסה ראשונה בלי junit and Extent Report
-//package ProjectRangeHRM.tests;
-//
-//import ProjectRangeHRM.pages.loginPage;
-//import ProjectRangeHRM.pages.mainPage;
-//import ProjectRangeHRM.seleniumBase;
-//import org.openqa.selenium.chrome.ChromeDriver;
-//
-//import static java.lang.Thread.sleep;
-//
-//public class mainTest {
-//    public static void main(String[] args) throws InterruptedException {
-//        seleniumBase base = new seleniumBase();
-//        ChromeDriver driver = base.seleniumInit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-//        loginPage loginPage = new loginPage(driver);
-//        loginPage.checkLoginAdmin();
-//        mainPage mainPage = new  mainPage(driver);
-//        mainPage.logout();
-//        mainPage.Responsive();
-//        mainPage.linkValidation();
-//        mainPage.checkListOfThePages();
-//        mainPage.searchPage();
-//        base.seleniumClose(driver);
-//    }
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

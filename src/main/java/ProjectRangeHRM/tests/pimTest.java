@@ -40,11 +40,13 @@ public class pimTest{
     @Test
     public void addUser() throws InterruptedException {
         String addUser = pimPage.addUser();
+        test = extent.createTest("Add User Test", "Testing the addition of a new user to the PIM module");
        tampToSearch(addUser);
     }
     @Test
     public void searchEmployee() throws InterruptedException {
         String searchEmployee = pimPage.searchEmployee("user");
+        test = extent.createTest("Search Employee Test", "Testing employee search functionality in the PIM module");
         tampToSearch(searchEmployee);
     }
     public void tampToSearch(String name){
@@ -61,34 +63,3 @@ public class pimTest{
         extent.flush();
     }
 }
-
-
-
-
-
-
-//גירסה ראשונה בלי junit and Extent Report
-//package ProjectRangeHRM.tests;
-//
-//import ProjectRangeHRM.pages.loginPage;
-//import ProjectRangeHRM.pages.pimPage;
-//import ProjectRangeHRM.seleniumBase;
-//import org.openqa.selenium.chrome.ChromeDriver;
-//
-//public class pimTest {
-//    public static void main(String[] args) throws InterruptedException {
-//        seleniumBase base = new seleniumBase();
-//        ChromeDriver driver = base.seleniumInit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-//        loginPage loginPage = new loginPage(driver);
-//        loginPage.checkLoginAdmin();
-//        pimPage pimPage = new pimPage(driver);
-//        pimPage.addUser();
-//        pimPage.searchEmployee("user");
-//
-//        base.seleniumClose(driver);
-//    }
-//}
-
-
-
-

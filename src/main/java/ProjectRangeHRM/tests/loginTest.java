@@ -38,16 +38,19 @@ public class loginTest {
     public void checkLoginWithUserNameWrong() throws InterruptedException {
         String checkLoginWithUserNameWrong = loginPage.checkLoginWithUserNameWrong();
         checkLoginSuccessful(checkLoginWithUserNameWrong);
+        test = extent.createTest("Invalid Username Test", "Testing login with an invalid username.");
     }
     @Test
     public void checkLoginWithPasswordWrong(){
         String checkLoginWithPasswordWrong = loginPage.checkLoginWithPasswordWrong();
         checkLoginSuccessful(checkLoginWithPasswordWrong);
+        test = extent.createTest("Invalid Password Test", "Testing login with an invalid password.");
     }
     @Test
     public void checkLoginEmpty(){
        String checkLoginEmpty = loginPage.checkLoginEmpty();
        checkLoginSuccessful(checkLoginEmpty);
+        test = extent.createTest("Empty Login Test", "Testing login with empty username and password.");
     }
     public void checkLoginSuccessful(String checkUserOrPassword){
         if(Objects.equals(checkUserOrPassword, "Login successful")){
@@ -60,6 +63,7 @@ public class loginTest {
     @Test
     public void forgetYourPassword(){
         String forgetYourPassword = loginPage.forgetYourPassword();
+        test = extent.createTest("Forgot Password Test", "Testing the forgot password functionality.");
         if (Objects.equals(forgetYourPassword, "Not reset Password link sent successfully")){
             test.fail("Not reset Password link sent successfully");
         } else if (Objects.equals(forgetYourPassword, "Reset Password link sent successfully")) {
@@ -73,37 +77,3 @@ public class loginTest {
         extent.flush();
     }
 }
-
-
-
-
-
-
-//גירסה ראשונה בלי junit and Extent Report
-//package ProjectRangeHRM.tests;
-//
-//import ProjectRangeHRM.pages.loginPage;
-//import ProjectRangeHRM.seleniumBase;
-//import org.openqa.selenium.chrome.ChromeDriver;
-//
-//import static java.lang.Thread.sleep;
-//
-//public class loginTest {
-//    public static void main(String[] args) throws InterruptedException {
-//        seleniumBase base = new seleniumBase();
-//        ChromeDriver driver = base.seleniumInit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-//        loginPage loginPage = new loginPage(driver);
-//        loginPage.checkLoginAdmin();
-//        loginPage.checkLoginWithUserNameWrong();
-//        loginPage.checkLoginWithPasswordWrong();
-//        loginPage.checkLoginEmpty();
-//        loginPage.forgetYourPassword();
-//        base.seleniumClose(driver);
-//    }
-//}
-
-
-
-
-
-

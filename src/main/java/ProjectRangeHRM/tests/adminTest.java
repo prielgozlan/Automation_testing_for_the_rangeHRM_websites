@@ -40,6 +40,7 @@ public class adminTest {
     @Test
     public void searchNameUser() throws InterruptedException {
         String searchNameUser = adminPage.searchNameUser();
+        test = extent.createTest("Search User Test", "Testing search for a user by name in the Admin module");
         if(Objects.equals(searchNameUser, "not find user")){
             test.fail("not find user");
         } else if (Objects.equals(searchNameUser, "find user")) {
@@ -50,6 +51,7 @@ public class adminTest {
     @Test
     public void deleteUser() throws InterruptedException {
         String deleteUser = adminPage.deleteUser();
+        test = extent.createTest("Delete User Test", "Testing user deletion functionality in the Admin module");
         if(Objects.equals(deleteUser, "User deletion failed.")){
             test.fail("User deletion failed.");
         } else if (Objects.equals(deleteUser, "User deleted successfully.")) {
@@ -63,41 +65,3 @@ public class adminTest {
         extent.flush();
     }
 }
-
-
-
-
-//גירסה ראשונה בלי junit and Extent Report
-//package ProjectRangeHRM.tests;
-//
-//import ProjectRangeHRM.pages.adminPage;
-//import ProjectRangeHRM.pages.loginPage;
-//import ProjectRangeHRM.seleniumBase;
-//import org.openqa.selenium.chrome.ChromeDriver;
-//
-//public class adminTest {
-//    public static void main(String[] args) throws InterruptedException {
-//        seleniumBase base = new seleniumBase();
-//        ChromeDriver driver = base.seleniumInit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-//        loginPage loginPage = new loginPage(driver);
-//        loginPage.checkLoginAdmin();
-//        adminPage adminPage = new adminPage(driver);
-//        adminPage.searchNameUser();
-//        adminPage.deleteUser();
-////        adminPage.updateName();
-//
-//        base.seleniumClose(driver);
-//    }
-//}
-
-
-
-
-
-
-
-
-
-
-
-
