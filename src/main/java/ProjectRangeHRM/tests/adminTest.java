@@ -2,7 +2,6 @@ package ProjectRangeHRM.tests;
 
 import ProjectRangeHRM.pages.adminPage;
 import ProjectRangeHRM.pages.loginPage;
-import ProjectRangeHRM.pages.mainPage;
 import ProjectRangeHRM.seleniumBase;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -11,11 +10,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
-
 import static org.junit.Assert.assertTrue;
 
 public class adminTest {
@@ -59,7 +56,6 @@ public class adminTest {
             test.pass("User deleted successfully.");
         }
         assertTrue(deleteUser, Objects.equals(deleteUser, "User deleted successfully."));
-
     }
     @After
     public void tearDown(){

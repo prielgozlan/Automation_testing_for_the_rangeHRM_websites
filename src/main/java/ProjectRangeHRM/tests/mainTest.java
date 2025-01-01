@@ -10,11 +10,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
-
 import static org.junit.Assert.assertTrue;
 
 public class mainTest {
@@ -24,8 +22,6 @@ public class mainTest {
     private ExtentReports extent;
     private ExtentTest test;
     private mainPage mainPage;
-
-
 
     @Before
     public void setUp() throws InterruptedException {
@@ -61,7 +57,6 @@ public class mainTest {
         }
         assertTrue(linkValidation, Objects.equals(linkValidation, "all links pass ok"));
     }
-
     @Test
     public void searchPage() throws InterruptedException {
         String searchPage = mainPage.searchPage();
@@ -92,16 +87,11 @@ public class mainTest {
         }
         assertTrue(Responsive, Objects.equals(Responsive, "everything pass ok"));
     }
-
-
-
     @After
     public void tearDown(){
         base.seleniumClose(driver);
         extent.flush();
     }
-
-
 }
 
 

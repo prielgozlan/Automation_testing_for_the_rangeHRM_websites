@@ -1,6 +1,7 @@
 package ProjectRangeHRM.pages;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+
 public class PageLoadTimePage {
 
     private ChromeDriver driver;

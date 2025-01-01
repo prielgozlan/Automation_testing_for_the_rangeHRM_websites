@@ -23,7 +23,6 @@ public class pimTest{
     private ExtentTest test;
     private pimPage pimPage;
 
-
     @Before
     public void setUp() throws InterruptedException {
         String timesNow = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
@@ -38,7 +37,6 @@ public class pimTest{
         loginPage.checkLoginAdmin();
         pimPage = new pimPage(driver);
     }
-
     @Test
     public void addUser() throws InterruptedException {
         String addUser = pimPage.addUser();
@@ -57,13 +55,15 @@ public class pimTest{
         }
         assertTrue("Adding a new user failed.", Objects.equals(name, "Records Found"));
     }
-
     @After
     public void tearDown() {
         base.seleniumClose(driver);
         extent.flush();
     }
 }
+
+
+
 
 
 

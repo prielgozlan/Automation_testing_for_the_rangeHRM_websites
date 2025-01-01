@@ -1,4 +1,5 @@
 package ProjectRangeHRM.tests;
+
 import ProjectRangeHRM.pages.PageLoadTimePage;
 import ProjectRangeHRM.seleniumBase;
 import org.junit.After;
@@ -27,7 +28,6 @@ public class PageLoadTimeTest {
         extent.attachReporter(sparkReporter);
         test = extent.createTest("Page Load Time Test", "Testing the page load time of HRM login page");
     }
-
     @Test
     public void testPageLoadTime() throws InterruptedException {
         long startTime = System.currentTimeMillis();
@@ -42,13 +42,14 @@ public class PageLoadTimeTest {
         }
         assertTrue("Page load time is too high", loadTime >= 3000);
     }
-
     @After
     public void tearDown() {
         base.seleniumClose(driver);
         extent.flush();
     }
 }
+
+
 
 
 //גירסה ראשונה בלי junit and Extent Report

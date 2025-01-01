@@ -6,14 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
-
-import static java.lang.Thread.sleep;
 
 public class mainPage {
 
@@ -30,16 +27,13 @@ public class mainPage {
     @FindBy(xpath = "//a[text()='Logout']")
     WebElement logoutButton;
 
-
-
     private ChromeDriver driver;
+
     public mainPage(ChromeDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver , this);
     }
-
     public String checkListOfThePages() throws InterruptedException {
-
         for(int i = 0 ; i < listPage.size() ; i++){
             if(!Objects.equals(listPage.get(i).getText(), "Maintenance")){
                 listPage.get(i).click();
@@ -52,11 +46,8 @@ public class mainPage {
                     return listPage.get(i).getText()+": " + "The page does not match the title in the page.";
                 }
             }
-
         }
         return "The page does match the title in the page.";
-
-
     }
     public String searchPage() throws InterruptedException {
         enterNamePage.sendKeys("pim");

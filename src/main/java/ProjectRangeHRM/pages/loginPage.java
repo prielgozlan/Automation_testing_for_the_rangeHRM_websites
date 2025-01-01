@@ -38,11 +38,8 @@ public class loginPage {
     @FindBy(className = "oxd-userdropdown-icon")
     WebElement drop;
 
-
-
-
-
     private ChromeDriver driver;
+
     public loginPage(ChromeDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver , this);
@@ -54,66 +51,66 @@ public class loginPage {
         enterPassword.sendKeys(password);
         Login.click();
     }
-
     public void checkLoginAdmin() throws InterruptedException {
         String userName =  userNameAndPassword.get(0).getText().split(" : ")[1];
         String password =  userNameAndPassword.get(1).getText().split(" : ")[1];
         login(userName , password);
-//        drop.click();
-//        logOut.get(3).click();
         System.out.println("Log in successfully as administrator");
     }
-
-    public void checkLoginWithUserNameWrong(){
+    public String checkLoginWithUserNameWrong(){
         String password =  userNameAndPassword.get(1).getText().split(" : ")[1];
         login("Admin111" , password);
         try {
             if(Objects.equals(InvalidCredentials.getText(), "Invalid credentials")){
                 System.out.println(InvalidCredentials.getText());
+                return "Invalid credentials";
             }
         }catch (Exception e){
             System.out.println("Login successful");
         }
+        return "Login successful";
+
     }
-    public void checkLoginWithPasswordWrong(){
+    public String checkLoginWithPasswordWrong(){
         driver.navigate().refresh();
         String userName =  userNameAndPassword.get(0).getText().split(" : ")[1];
         login(userName ,"admin000");
         try {
             if(Objects.equals(InvalidCredentials.getText(), "Invalid credentials")){
                 System.out.println(InvalidCredentials.getText());
+                return "Invalid credentials";
             }
         }catch (Exception e){
             System.out.println("Login successful");
         }
+        return "Login successful";
     }
-    public void checkLoginEmpty(){
+    public String checkLoginEmpty(){
         login("","");
         try {
             if(Objects.equals(Required.getText(), "Required")){
-                System.out.println("user name or password wrong");
+                System.out.println("user add name and password");
+                return "user add name and password";
             }
         }catch (Exception e){
             System.out.println("Login successful");
         }
 
+        return "Login successful";
     }
-    public void forgetYourPassword(){
+    public String forgetYourPassword(){
         forgetPassword.click();
         enterUserName.sendKeys("Admin");
         resetPassword.click();
         try {
             if(Objects.equals(linkSentSuccessfully.getText(), "Reset Password link sent successfully")){
                 System.out.println(linkSentSuccessfully.getText());
+                return "Reset Password link sent successfully";
             }
 
         }catch (Exception e){
             System.out.println("Not reset Password link sent successfully");
         }
+        return "Not reset Password link sent successfully";
     }
-
-
-
-
-
 }

@@ -4,10 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
 import java.util.Objects;
-
 import static java.lang.Thread.sleep;
 
 public class pimPage {
@@ -28,13 +26,11 @@ public class pimPage {
     WebElement nameEmp;
     @FindBy(className = "orangehrm-left-space")
     WebElement enterSearch;
-
-@FindBy(css = "div.orangehrm-horizontal-padding span.oxd-text")
-WebElement findEmployee;
-
-
+    @FindBy(css = "div.orangehrm-horizontal-padding span.oxd-text")
+    WebElement findEmployee;
 
     private ChromeDriver driver;
+
     public pimPage(ChromeDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver , this);
@@ -52,9 +48,6 @@ WebElement findEmployee;
             System.out.println("Records Found");
             return "Records Found";
         }
-
-
-
     }
     public String addUser() throws InterruptedException {
         listOfNamePage.get(1).click();
@@ -70,6 +63,4 @@ WebElement findEmployee;
         sleep(5000);
         return searchEmployee;
     }
-
-
 }

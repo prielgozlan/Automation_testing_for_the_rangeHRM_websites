@@ -31,14 +31,12 @@ public class adminPage {
     @FindBy(className = "oxd-input--active")
     WebElement nameWorker;
 
-
     private ChromeDriver driver;
 
     public adminPage(ChromeDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
     public String searchNameUser() throws InterruptedException {
         listOfNamePage.get(0).click();
         String nameUser = listOfName.get(0).getText().split("\n")[0];
@@ -53,7 +51,6 @@ public class adminPage {
             return "not find user";
         }
     }
-
     public String deleteUser() throws InterruptedException {
         listOfNamePage.get(0).click();
         String nameUser = listOfName.get(2).getText().split("\n")[0];
@@ -75,7 +72,6 @@ public class adminPage {
             return "User deletion failed.";
         }
     }
-
     public void updateName() throws InterruptedException {
         listOfNamePage.get(0).click();
     }
