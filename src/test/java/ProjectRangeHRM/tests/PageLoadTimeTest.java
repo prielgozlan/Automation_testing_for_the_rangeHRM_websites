@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PageLoadTimeTest extends seleniumBase {
 
-
+    // Record the start time in milliseconds
     @Test
     public void testPageLoadTime() throws InterruptedException {
         long startTime = System.currentTimeMillis();

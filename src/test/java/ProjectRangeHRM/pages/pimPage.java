@@ -38,31 +38,48 @@ public class pimPage {
         PageFactory.initElements(driver , this);
     }
     public String searchEmployee(String nameEmployee) throws InterruptedException {
+        // Step 1: Click on the second item in the list of pages
         listOfNamePage.get(1).click();
+        // Step 2: Enter the employee's name into the search input field
         nameEmp.sendKeys(nameEmployee);
+        // Step 3: Click the search button
         enterSearch.click();
+        // Step 4: Pause for 5 seconds to ensure the search results are loaded
         sleep(5000);
+        // Step 5: Check if the "No Records Found" message appears
         if(Objects.equals(findEmployee.getText(), "No Records Found")){
             System.out.println("No Records Found");
             return "No Records Found";
         }
         else {
+            // Step 6: If records are found, return a success message
             System.out.println("Records Found");
             return "Records Found";
         }
     }
+
     public String addUser() throws InterruptedException {
+        // Step 1: Click on the second item in the list of pages to go to the PIM section
         listOfNamePage.get(1).click();
+        // Step 2: Click the "Add" button to start adding a new user
         enterAdd.click();
+        // Step 3: Enter the first name of the new user
         String firstNameOfWorker = "priel";
-        String lastNameOfWorker = "gozlan";
         firstName.sendKeys(firstNameOfWorker);
+        // Step 4: Enter the last name of the new user
+        String lastNameOfWorker = "gozlan";
         lastName.sendKeys(lastNameOfWorker);
+        // Step 5: Click the "Save" button to save the new user
         enterSave.click();
+        // Step 6: Wait for the page to process the save operation
         sleep(5000);
+        // Step 7: Go back to the PIM section to search for the newly added user
         listOfNamePage.get(1).click();
+        // Step 8: Search for the newly added employee by their last name
         String searchEmployee = searchEmployee(lastNameOfWorker);
+        // Step 9: Wait for the search to complete and return the result of the search
         sleep(5000);
         return searchEmployee;
     }
+
 }

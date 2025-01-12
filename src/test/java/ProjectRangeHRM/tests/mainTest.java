@@ -15,10 +15,14 @@ public class mainTest extends seleniumBase {
 
     @BeforeAll
     public static void setUp() throws InterruptedException {
+        // Log in as an admin user before running the tests
         loginPage loginPage = new loginPage(driver);
         loginPage.checkLoginAdmin();
+        // Initialize the mainPage object
         mainPage = new mainPage(driver);
     }
+
+    // Test the logout functionality
     @Test
     public void logout() throws InterruptedException {
         String logout = mainPage.logout();
@@ -29,9 +33,12 @@ public class mainTest extends seleniumBase {
             test.fail("Did not log out successfully");
         }
         assertTrue(!Objects.equals(logout, "Did not log out successfully"),"Did not log out successfully.");
+        // Re-login to ensure the session is valid for further tests
         loginPage loginPage = new loginPage(driver);
         loginPage.checkLoginAdmin();
     }
+
+    // Test the validity of all links on the main page
     @Test
     public void linkValidation(){
         driver.navigate().refresh();
@@ -45,6 +52,7 @@ public class mainTest extends seleniumBase {
         assertTrue(Objects.equals(linkValidation, "all links pass ok"),linkValidation);
     }
 
+    // Test if the titles and content of the listed pages match
     @Test
     public void checkListOfThePages() throws InterruptedException {
         driver.navigate().refresh();
@@ -57,6 +65,8 @@ public class mainTest extends seleniumBase {
         }
         assertTrue(!Objects.equals(checkListOfThePages, "The page does match the title in the page."),checkListOfThePages);
     }
+
+    // Check the responsiveness of the main page in any resolution mode
     @Test
     public void Responsive() throws InterruptedException {
         driver.navigate().refresh();
@@ -69,6 +79,8 @@ public class mainTest extends seleniumBase {
         }
         assertTrue(Objects.equals(Responsive, "everything pass ok"),Responsive);
     }
+
+    // Test the search pages on the main page
     @Test
     public void searchPage() throws InterruptedException {
         driver.navigate().refresh();

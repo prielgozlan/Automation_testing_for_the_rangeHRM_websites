@@ -15,8 +15,11 @@ public class loginTest extends seleniumBase {
 
     @BeforeAll
     public static void setUp() throws InterruptedException {
+        // Initialize the loginPage object before running tests
         loginPage = new loginPage(driver);
     }
+
+    // Test login functionality with an invalid username
     @Test
     public void checkLoginWithUserNameWrong() throws InterruptedException {
         driver.navigate().refresh();
@@ -24,6 +27,8 @@ public class loginTest extends seleniumBase {
         test = extent.createTest("Invalid Username Test", "Testing login with an invalid username.");
         checkLoginSuccessful(checkLoginWithUserNameWrong , test);
     }
+
+    // Test login functionality with an invalid password
     @Test
     public void checkLoginWithPasswordWrong(){
         driver.navigate().refresh();
@@ -31,6 +36,8 @@ public class loginTest extends seleniumBase {
         test = extent.createTest("Invalid Password Test", "Testing login with an invalid password.");
         checkLoginSuccessful(checkLoginWithPasswordWrong , test);
     }
+
+    // Test login functionality with empty username and password fields
     @Test
     public void checkLoginEmpty(){
         driver.navigate().refresh();
@@ -38,6 +45,9 @@ public class loginTest extends seleniumBase {
         test = extent.createTest("Empty Login Test", "Testing login with empty username and password.");
        checkLoginSuccessful(checkLoginEmpty , test);
     }
+
+    // Common validation for login tests
+    // Checks if the login result is successful or failed
     public void checkLoginSuccessful(String checkUserOrPassword , ExtentTest test){
         if(Objects.equals(checkUserOrPassword, "Login successful")){
             test.pass(checkUserOrPassword);
@@ -46,6 +56,8 @@ public class loginTest extends seleniumBase {
         }
         assertTrue(!Objects.equals(checkUserOrPassword, "Login successful"),checkUserOrPassword);
     }
+
+    // Test the "Forgot Password" functionality
     @Test
     public void forgetYourPassword(){
         driver.navigate().refresh();

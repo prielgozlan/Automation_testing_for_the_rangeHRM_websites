@@ -15,10 +15,13 @@ public class pimTest extends seleniumBase {
 
     @BeforeAll
     public static void setUp() throws InterruptedException {
+        // Login as an admin user before executing tests
         loginPage loginPage = new loginPage(driver);
         loginPage.checkLoginAdmin();
         pimPage = new pimPage(driver);
     }
+
+    // Test case for adding a new user to the PIM module
     @Test
     public void addUser() throws InterruptedException {
         driver.navigate().refresh();
@@ -26,6 +29,8 @@ public class pimTest extends seleniumBase {
         test = extent.createTest("Add User Test", "Testing the addition of a new user to the PIM module");
         tampToSearch(addUser , test);
     }
+
+    // Test case for searching for an employee
     @Test
     public void searchEmployee() throws InterruptedException {
         driver.navigate().refresh();
@@ -33,6 +38,8 @@ public class pimTest extends seleniumBase {
         test = extent.createTest("Search Employee Test", "Testing employee search functionality in the PIM module");
         tampToSearch(searchEmployee , test);
     }
+
+    // Helper method to validate the results of adding a user or searching for employees
     public void tampToSearch(String name , ExtentTest test){
         if (Objects.equals(name, "No Records Found")) {
             test.fail("Adding a new user failed.");

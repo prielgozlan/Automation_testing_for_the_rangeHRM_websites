@@ -16,10 +16,13 @@ public class adminTest extends seleniumBase {
 
     @BeforeAll
     public static void setUp() throws InterruptedException {
+        // Logs into the system as an Admin and initializes the Admin page object
         loginPage loginPage = new loginPage(driver);
         loginPage.checkLoginAdmin();
         adminPage = new adminPage(driver);
     }
+
+    // This test checks the ability to search for a user by name in the Admin module
     @Test
     public void searchNameUser() throws InterruptedException {
         driver.navigate().refresh();
@@ -33,6 +36,8 @@ public class adminTest extends seleniumBase {
         assertTrue(Objects.equals(searchNameUser, "find user"), searchNameUser);
 
     }
+
+    // This test checks the ability to delete a user in the Admin module
     @Test
     public void deleteUser() throws InterruptedException {
         driver.navigate().refresh();
