@@ -11,7 +11,7 @@ public class PageLoadTimePage {
     }
     public long getPerformance (long startTime){
         long loadTime = System.currentTimeMillis() - startTime;
-        loadTime /= 1000;
+        loadTime /= 10;
         if (loadTime > 3){
             System.out.println("The site does not load in a timely manner.");
         }

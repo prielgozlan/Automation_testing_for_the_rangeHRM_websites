@@ -3,65 +3,42 @@ package ProjectRangeHRM.tests;
 import ProjectRangeHRM.pages.loginPage;
 import ProjectRangeHRM.pages.pimPage;
 import ProjectRangeHRM.seleniumBase;
-import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.junit.jupiter.api.*;
 import java.util.Objects;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.Assert.assertTrue;
+public class pimTest extends seleniumBase {
 
-public class pimTest{
-
-    private seleniumBase base;
-    private ChromeDriver driver;
-    private ExtentReports extent;
     private ExtentTest test;
-    private pimPage pimPage;
+    private static pimPage pimPage;
 
-    @BeforeEach
-    public void setUp() throws InterruptedException {
-        String timesNow = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
-        String myPath = System.getProperty("user.dir") + "/src/main/resources/pimTest_" + timesNow + ".html";
-        ExtentSparkReporter sparkReporter = new ExtentSparkReporter(myPath);
-        extent = new ExtentReports();
-        extent.attachReporter(sparkReporter);
-        test = extent.createTest("PIM Page Test", "Testing user addition and search functionalities in PIM module");
-        base = new seleniumBase();
-        driver = base.seleniumInit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    @BeforeAll
+    public static void setUp() throws InterruptedException {
         loginPage loginPage = new loginPage(driver);
         loginPage.checkLoginAdmin();
         pimPage = new pimPage(driver);
     }
     @Test
     public void addUser() throws InterruptedException {
+        driver.navigate().refresh();
         String addUser = pimPage.addUser();
         test = extent.createTest("Add User Test", "Testing the addition of a new user to the PIM module");
-       tampToSearch(addUser);
+        tampToSearch(addUser , test);
     }
     @Test
     public void searchEmployee() throws InterruptedException {
+        driver.navigate().refresh();
         String searchEmployee = pimPage.searchEmployee("user");
         test = extent.createTest("Search Employee Test", "Testing employee search functionality in the PIM module");
-        tampToSearch(searchEmployee);
+        tampToSearch(searchEmployee , test);
     }
-    public void tampToSearch(String name){
+    public void tampToSearch(String name , ExtentTest test){
         if (Objects.equals(name, "No Records Found")) {
             test.fail("Adding a new user failed.");
         } else if (Objects.equals(name, "Records Found")) {
             test.pass("Adding a new user was successful.");
         }
-        assertTrue("Adding a new user failed.", Objects.equals(name, "Records Found"));
-    }
-    @AfterEach
-    public void tearDown() {
-        base.seleniumClose(driver);
-        extent.flush();
+        assertTrue(Objects.equals(name, "Records Found"),"Adding a new user failed.");
     }
 }

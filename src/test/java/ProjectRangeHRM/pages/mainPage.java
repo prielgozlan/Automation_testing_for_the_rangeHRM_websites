@@ -35,6 +35,7 @@ public class mainPage {
         PageFactory.initElements(driver , this);
     }
     public String checkListOfThePages() throws InterruptedException {
+//        listPage.get(7).click();
         for(int i = 0 ; i < listPage.size() ; i++){
             if(!Objects.equals(listPage.get(i).getText(), "Maintenance")){
                 listPage.get(i).click();
@@ -51,6 +52,7 @@ public class mainPage {
         return "The page does match the title in the page.";
     }
     public String searchPage() throws InterruptedException {
+//        listPage.get(7).click();
         enterNamePage.sendKeys("pim");
         if(!Objects.equals(findPage.get(1).getText(), "")){
             System.out.println("result for search : "+findPage.get(1).getText());
@@ -62,6 +64,7 @@ public class mainPage {
         }
     }
     public String logout() throws InterruptedException {
+//        listPage.get(7).click();
         profileMenu.click();
         logoutButton.click();
         String currentUrl = driver.getCurrentUrl();
@@ -75,6 +78,7 @@ public class mainPage {
         }
     }
     public String Responsive() throws InterruptedException {
+//        listPage.get(7).click();
         PageLoadTimePage PageLoadTimePage = new PageLoadTimePage(driver);
         long startTimeDesktop = System.currentTimeMillis();
         driver.manage().window().setSize(new Dimension(1920, 1080));
@@ -97,6 +101,7 @@ public class mainPage {
         return "everything pass ok";
     }
     public String linkValidation(){
+//        listPage.get(7).click();
         List<WebElement> links = driver.findElements(By.tagName("a"));
         for (WebElement link : links) {
             String url = link.getAttribute("href");

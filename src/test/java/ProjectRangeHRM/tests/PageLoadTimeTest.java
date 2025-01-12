@@ -2,51 +2,25 @@ package ProjectRangeHRM.tests;
 
 import ProjectRangeHRM.pages.PageLoadTimePage;
 import ProjectRangeHRM.seleniumBase;
-import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+public class PageLoadTimeTest extends seleniumBase {
 
-import static org.junit.Assert.assertTrue;
-public class PageLoadTimeTest {
 
-    private seleniumBase base;
-    private ChromeDriver driver;
-    private ExtentReports extent;
-    private ExtentTest test;
-
-    @BeforeEach
-    public void setUp() throws InterruptedException {
-        String timesNow = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
-        String myPath = System.getProperty("user.dir") + "/src/main/resources/PageLoadTimeTest_" + timesNow + ".html";
-        ExtentSparkReporter sparkReporter = new ExtentSparkReporter(myPath);
-        extent = new ExtentReports();
-        extent.attachReporter(sparkReporter);
-        test = extent.createTest("Page Load Time Test", "Testing the page load time of HRM login page");
-    }
     @Test
     public void testPageLoadTime() throws InterruptedException {
         long startTime = System.currentTimeMillis();
-        base = new seleniumBase();
-        driver = base.seleniumInit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        ExtentTest test = extent.createTest("Page Load Time Test", "Testing the page load time performance");
         PageLoadTimePage pageLoadTimePage = new PageLoadTimePage(driver);
         long loadTime = pageLoadTimePage.getPerformance(startTime);
-        if (loadTime > 3000) {
+        if (loadTime <= 3) {
             test.pass("Page load time is within acceptable range: " + loadTime + "ms");
         } else {
             test.fail("Page load time is too high: " + loadTime + "ms");
         }
-        assertTrue("Page load time is too high", loadTime >= 3000);
-    }
-    @AfterEach
-    public void tearDown() {
-        base.seleniumClose(driver);
-        extent.flush();
+        System.out.println(loadTime);
+        assertTrue( loadTime < 3,"Page load time is too high");
     }
 }
