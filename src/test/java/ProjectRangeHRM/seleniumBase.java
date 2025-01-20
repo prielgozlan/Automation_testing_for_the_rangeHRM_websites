@@ -41,7 +41,6 @@ public class seleniumBase {
     @AfterAll
     public static void seleniumClose(){
         System.out.println("close test ...");
-        // שמירה של הדוח (לא מוחק אותו, אלא מוסיף אליו)
         extent.flush();
         driver.close();
     }
