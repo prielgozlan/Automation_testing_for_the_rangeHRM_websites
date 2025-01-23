@@ -19,7 +19,7 @@ public class loginTest extends seleniumBase {
         loginPage = new loginPage(driver);
     }
 
-    // Test login functionality with an invalid username
+    // Test login functionality with an invalid username wrong
     @Test
     public void checkLoginWithUserNameWrong() throws InterruptedException {
         driver.navigate().refresh();
@@ -28,7 +28,7 @@ public class loginTest extends seleniumBase {
         checkLoginSuccessful(checkLoginWithUserNameWrong , test);
     }
 
-    // Test login functionality with an invalid password
+    // Test login functionality with an invalid password wrong
     @Test
     public void checkLoginWithPasswordWrong(){
         driver.navigate().refresh();

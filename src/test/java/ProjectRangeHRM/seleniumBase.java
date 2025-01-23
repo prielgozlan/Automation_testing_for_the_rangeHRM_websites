@@ -20,7 +20,6 @@ public class seleniumBase {
     @BeforeAll
     public static void seleniumInit() throws InterruptedException {
         System.out.println("Starting...");
-
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String reportPath = System.getProperty("user.dir") + "/src/test/resources/TestReport_" + timestamp + ".html";
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter(reportPath);
@@ -30,9 +29,9 @@ public class seleniumBase {
         // אתחול של ה-ChromeDriver
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");    //fix for chrome version 111
-        options.addArguments("--start-maximized");
-        options.setAcceptInsecureCerts(true);
-        WebDriverManager.chromedriver().setup();
+        options.addArguments("--start-maximized");   // פותח את הדפדפן במסך מלא
+        options.setAcceptInsecureCerts(true); // מאפשר גישה לאתרים עם תעודות אבטחה לא תקינות
+        WebDriverManager.chromedriver().setup(); // מנהל ההתקנה WebDriverManager מוריד ומגדיר את הדרייבר של Chrome אוטומטית
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
